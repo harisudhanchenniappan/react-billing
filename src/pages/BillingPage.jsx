@@ -10,28 +10,31 @@ const BillingPage = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const user = localStorage.getItem("username");
+      const user = localStorage.getItem('username');
       if (!user) {
-        alert("Please log in.");
-        navigate("/login");
+        alert('Please log in.');
+        navigate('/login');
       } else {
         setUsername(user);
+        fetchItems(user);  // Fetch items for the logged-in user
       }
     };
     fetchUser();
   }, []);
 
-  useEffect(() => {
-    if (username) {
-      axios.get('https://react-billing.onrender.com/api/items')
-        .then((res) => {
-          // Filter items based on the username stored in localStorage
-          const filteredItems = res.data.filter(item => item.username === username);
-          setItems(filteredItems);
-        })
-        .catch((err) => console.error(err));
+  // Fetch items for the logged-in user
+  const fetchItems = async (username) => {
+    try {
+      const res = await axios.get('https://react-billing.onrender.com/api/items', {
+        params: { username },
+      });
+      setItems(res.data);
+    } catch (err) {
+      console.error(err);
     }
-  }, [username]);
+  };
+
+  
 
   const generateBillNumber = () => {
     const now = new Date();
