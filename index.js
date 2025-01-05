@@ -94,10 +94,26 @@ app.post('/login', async (req, res) => {
   }
 });
 
+
+
 app.get('/api/items', async (req, res) => {
+  const { username } = req.query;
+
   try {
-    const items = await Item.find();
+    const items = await Item.find({ username });
     res.status(200).send(items);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+// Delete an item
+app.delete('/api/items/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await Item.findByIdAndDelete(id);
+    res.status(200).send({ message: 'Item deleted successfully' });
   } catch (err) {
     res.status(500).send(err);
   }
