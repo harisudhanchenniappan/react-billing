@@ -4,50 +4,76 @@ import { Link } from "react-router-dom";
 function WelcomePage() {
   const styles = {
     container: {
-      fontFamily: "'Roboto', sans-serif",
-      padding: "2rem",
-      backgroundColor: "#f9f9f9",
-      color: "#333",
-      borderRadius: "8px",
-      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+      fontFamily: "'Poppins', sans-serif",
+      padding: "3rem",
+      backgroundColor: "#ffffff",
+      borderRadius: "12px",
+      boxShadow: "0 8px 20px rgba(0, 0, 0, 0.1)",
+      maxWidth: "1000px",
+      margin: "3rem auto",
       textAlign: "center",
-      maxWidth: "800px",
-      margin: "2rem auto",
     },
     header: {
-      color: "#2c3e50",
-      fontWeight: "bold",
+      color: "#1a202c",
+      fontWeight: "800",
+      fontSize: "2.5rem",
       marginBottom: "1rem",
     },
     leadText: {
-      color: "#7f8c8d",
+      color: "#4a5568",
       marginBottom: "2rem",
-      fontSize: "1.1rem",
+      fontSize: "1.2rem",
+      lineHeight: "1.8",
     },
     buttonContainer: {
-      marginBottom: "2rem",
+      display: "flex",
+      justifyContent: "center",
+      gap: "1rem",
+      marginBottom: "3rem",
     },
     button: {
-      backgroundColor: "#3498db",
+      backgroundColor: "#2b6cb0",
       color: "#fff",
-      padding: "0.8rem 2rem",
+      padding: "0.8rem 1.5rem",
       fontSize: "1.1rem",
-      fontWeight: "bold",
+      fontWeight: "600",
       border: "none",
-      borderRadius: "5px",
+      borderRadius: "6px",
       textDecoration: "none",
-      margin: "0 1rem",
+      transition: "transform 0.2s ease, background-color 0.3s ease",
     },
-    sectionTitle: {
-      color: "#2980b9",
-      fontWeight: "bold",
-      marginTop: "2rem",
-      marginBottom: "1rem",
+    buttonHover: {
+      backgroundColor: "#2c5282",
+      transform: "scale(1.05)",
     },
-    list: {
-      textAlign: "left",
-      margin: "0 auto",
-      maxWidth: "600px",
+    featureContainer: {
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+      gap: "2rem",
+      margin: "2rem 0",
+    },
+    featureCard: {
+      backgroundColor: "#f7fafc",
+      padding: "1.5rem",
+      borderRadius: "10px",
+      boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+      textAlign: "center",
+    },
+    featureIcon: {
+      fontSize: "2rem",
+      color: "#3182ce",
+      marginBottom: "0.5rem",
+    },
+    featureTitle: {
+      fontSize: "1.2rem",
+      fontWeight: "700",
+      color: "#2d3748",
+      marginBottom: "0.5rem",
+    },
+    featureText: {
+      fontSize: "1rem",
+      color: "#4a5568",
+      lineHeight: "1.6",
     },
   };
 
@@ -55,35 +81,72 @@ function WelcomePage() {
     <div style={styles.container}>
       <h1 style={styles.header}>Welcome to Your Billing Dashboard</h1>
       <p style={styles.leadText}>
-        Effortlessly manage your bills, track payments, and get detailed insights with our user-friendly billing app. Whether you're a small business or an individual, we simplify the process for you!
+        Say goodbye to billing stress! Our intuitive app helps you organize, track, and manage your bills 
+        with ease. Whether you're an individual or a business, we’ve got the tools you need to stay on top 
+        of your finances.
       </p>
 
       <div style={styles.buttonContainer}>
-        <Link to="/login-signup" style={styles.button}>
-          Login/Signup
+        <Link
+          to="/login"
+          style={styles.button}
+          onMouseOver={(e) => {
+            e.target.style.backgroundColor = styles.buttonHover.backgroundColor;
+            e.target.style.transform = styles.buttonHover.transform;
+          }}
+          onMouseOut={(e) => {
+            e.target.style.backgroundColor = styles.button.backgroundColor;
+            e.target.style.transform = "scale(1)";
+          }}
+        >
+          Login
         </Link>
-        
+        <Link
+          to="/signup"
+          style={styles.button}
+          onMouseOver={(e) => {
+            e.target.style.backgroundColor = styles.buttonHover.backgroundColor;
+            e.target.style.transform = styles.buttonHover.transform;
+          }}
+          onMouseOut={(e) => {
+            e.target.style.backgroundColor = styles.button.backgroundColor;
+            e.target.style.transform = "scale(1)";
+          }}
+        >
+          Signup
+        </Link>
       </div>
 
-      <h3 style={styles.sectionTitle}>Why Use Our Billing App?</h3>
-      <ul style={styles.list}>
-        <li>💸 Track all your bills in one place with real-time updates.</li>
-        <li>📊 Generate and view detailed summaries for each bill.</li>
-        <li>🔒 Secure payment tracking and bill management.</li>
-        <li>🧾 Easy-to-read invoices and receipts for all transactions.</li>
-      </ul>
-
-      <h3 style={styles.sectionTitle}>How It Works</h3>
-      <ol style={styles.list}>
-        <li>1️⃣ Sign up or log in to your account.</li>
-        <li>2️⃣ Add and manage your bills.</li>
-        <li>3️⃣ Track your payments and due dates.</li>
-        <li>4️⃣ Get insightful reports and notifications about your bills.</li>
-      </ol>
-
-      <p style={styles.leadText}>
-        Ready to get started? Click the buttons above and start managing your bills with ease!
-      </p>
+      <div style={styles.featureContainer}>
+        <div style={styles.featureCard}>
+          <div style={styles.featureIcon}>💸</div>
+          <div style={styles.featureTitle}>Real-Time Tracking</div>
+          <p style={styles.featureText}>
+            Monitor your bills and payments in real-time. Stay updated on due dates and outstanding payments.
+          </p>
+        </div>
+        <div style={styles.featureCard}>
+          <div style={styles.featureIcon}>📊</div>
+          <div style={styles.featureTitle}>Detailed Analytics</div>
+          <p style={styles.featureText}>
+            Generate insightful reports for better financial decisions. Understand your spending patterns.
+          </p>
+        </div>
+        <div style={styles.featureCard}>
+          <div style={styles.featureIcon}>🔒</div>
+          <div style={styles.featureTitle}>Secure & Reliable</div>
+          <p style={styles.featureText}>
+            Your data is safe with our top-notch security measures. Manage bills with peace of mind.
+          </p>
+        </div>
+        <div style={styles.featureCard}>
+          <div style={styles.featureIcon}>🧾</div>
+          <div style={styles.featureTitle}>Effortless Invoicing</div>
+          <p style={styles.featureText}>
+            Easily create, send, and manage invoices. Simplify your billing process and save time.
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
