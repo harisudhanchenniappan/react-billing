@@ -88,7 +88,7 @@ function WelcomePage() {
 
       <div style={styles.buttonContainer}>
         <Link
-          to="/login"
+          to="/Login-signup"
           style={styles.button}
           onMouseOver={(e) => {
             e.target.style.backgroundColor = styles.buttonHover.backgroundColor;
@@ -102,7 +102,7 @@ function WelcomePage() {
           Login
         </Link>
         <Link
-          to="/signup"
+          to="/Login-signup"
           style={styles.button}
           onMouseOver={(e) => {
             e.target.style.backgroundColor = styles.buttonHover.backgroundColor;
